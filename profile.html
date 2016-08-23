@@ -17,27 +17,18 @@
 			</div>
 			<ul class='nav navbar-nav'>
 				<li class='navbutton animated slideInDown'><a href='index.html'>Home</a></li>
-				<li class='navbutton animated slideInDown'><a href='#'>Profile</a></li>
-				<li class='navbutton animated slideInDown'><a href='#'>Hunting</a></li>
+				<li class='navbutton animated slideInDown'><a href='profile.html'>Profile</a></li>
+				<li class='navbutton animated slideInDown'><a href='hunting.html'>Hunting</a></li>
 			</ul>
 		</nav>
 	</header>	
-<!-- 	login modal not working
-	<div id='loginModal' class='modal fade' role='login'>
-		<div class='modal-dialog'>
-			<div class='modal-content'>
-				<div class="modal-header">
-          			<button type="button" class="close" data-dismiss="modal">&times;</button>
-        			<h4 class="modal-title">Modal Header</h4>
-        		</div>
-        		<div class='modal-body'>
-        			<div class='split-panel'>
-        			</div>
-        		</div>
-        	</div>
+<div class='row'>
+	<div class='col-sm-1'>
+		<div id='loginPanel' class='panel panel-default'>
+			<p><a id='loginLink' href="#0">login/signup</a></p>
 		</div>
 	</div>
- -->
+</div>
 	<div class='container' >
 		<div class='row'>
 				<div class='col-md-12 text-center page-header'>
@@ -52,46 +43,97 @@
 				<div class="col-md-4">
 					<div class="panel panel-default">
 						<div class="panel-body" id="avatar">
-					    Avatar
-						</div>
+<!-- 					    	<form method="post" id="fileinfo" name="fileinfo" onsubmit="return submitForm();">
+        						<label>Select a file:</label><br>
+        						<input type="file" name="file" required />
+        						<input id='picImg' type="submit" value="Upload" />
+   							 </form>
+   							 <div id="output"></div>
+ -->						</div>
 					</div>
+					<button class="btn btn-default" id="editProfile" type="submit"> Edit Profile </button>
+					<!-- Button saves profile changes: -->
+					<div id="saveProfileButton" method="get" style="display: none;">
+					<button class="btn btn-default" id="editProfile" type="submit"> Save Changes </button>
+					</div>
+
 				</div>
 				<div class="col-md-8">
+					<!-- Shows username  -->
 					<div class="col-md-12">
 						<div class="panel panel-default box-shadow">
 							<div class="panel-heading">
 							<img id='pokeball' src='assets/images/pokeball.png'>Username:
 							</div>
-								<div class="panel-body">
+								<div id='username' class="panel-body">
 					    		Actual Username
-							</div>
+								</div>
+							<!-- Form to replace when user edits profile -->
+									<div id="usernameForm" method="get" style="display: none;">
+										<form name="input" action="html_form_action.asp" method="get" style="display: none;">
+									    	<input type="text" id="usernameInput" />
+										</form>
+									</div>
 						</div>
+						
 					</div>
+						<!-- shows Pokemon-Go team and level -->
 						<div class="col-md-4">
 							<div class="panel panel-default box-shadow">
-								<div class="panel-body">
+								<div id="team-level" class="panel-body">
 					    		Team:
 					    		<br>
 					    		Level:
+								</div>
+
+								<!-- Form to replace when user edits profile -->
+								<div id="teamLevelForm" method="get" style="display: none;">
+								Team: 
+									<select id='teamInput' class="form-control">
+									  <option>Instinct</option>
+									  <option>Mystic</option>
+									  <option>Valor</option>
+									</select>
+
+								<!-- <form name="input" action="html_form_action.asp" method="get" style="display: none;">
+								    <input type="text" id="teamInput" />
+									</form> -->
+								Level:
+								    <input type="number" id="levelInput" />
 								</div>
 							</div>
 						</div>
 						<div class="col-md-8">
 							<div class="panel panel-default box-shadow">
-								<div class="panel-heading">
+								<div id="userEmail" class="panel-heading">
 								E-mail:
 								</div>
-								<div class="panel-body">
+								<div id="email" class="panel-body">
 					    		Actual E-mail
 								</div>
+								<!-- Form to replace when user edits profile -->
+									<div id="emailForm" method="get" style="display: none;">
+										<form name="input" action="html_form_action.asp" method="get" style="display: none;">
+									    	<input type="text" id="emailInput" />
+										</form>
+									</div>
 							</div>
 						</div>
 						<div class="col-md-offset-4 col-md-8">
 							<div class="panel panel-default box-shadow">
-								<div class="panel-body">
+								<div id='age-gender' class="panel-body">
 					    		Age:
 					    		<br>
 					    		Gender:
+								</div>
+								<!-- Form to replace when user edits profile -->
+								<div id="ageGenderForm" method="get" style="display: none;">
+								Age: <form name="input" action="html_form_action.asp" method="get" style="display: none;">
+								    <input type="number" id="ageInput" />
+									</form>
+								Gender: <form name="input" action="html_form_action.asp" method="get" style="display: none;">
+								    <input type="text" id="genderInput" />
+									</form>
 								</div>
 							</div>
 						</div>
@@ -116,7 +158,7 @@
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="assets/javascript/app.js"></script>
+<script type="text/javascript" src="assets/javascript/profapp.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
 </body>
 </html>
