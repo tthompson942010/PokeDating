@@ -133,8 +133,8 @@ select {
 	margin-top: 10px;
 	position: absolute;
 	top: 10px;
-	text-align: center;
-	margin-right: 0px;
+	text-align: left;
+	margin-left: 20px;
 }
 
 #background {
