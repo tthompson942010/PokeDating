@@ -7,13 +7,29 @@ body {
 h1 {
 	font-size: 50px;
 }
-
+.work{
+	display: none;
+}
 input {
 	margin: 5px;
 }
 
+#pokemonInput {
+	width:90%;
+}
+.typeahead.form-control.work.tt-hint{
+	width:90%;
+}
 select {
 	
+}
+
+#pokeImg {
+	margin: 10px;
+}
+
+.tt-menu {
+     display: none !important;
 }
 .navbar-nav {
 	float: right;
@@ -51,6 +67,8 @@ select {
 }
 
 #footer {
+	/*position: absolute;
+	bottom: 0;*/
 	color: #cccccb;
     width: 100%;
     height: 80px;
@@ -72,14 +90,14 @@ select {
 }
 
 .box-shadow {
-    box-shadow: 10px 10px 5px #888888;
+    box-shadow: 10px 10px 5px #d5d5d5;
     border-color: black;
     border-style: solid;
 	border-radius: 5px;
 }
 
 .profile-border {
-    box-shadow: 10px 10px 5px #888888;
+    box-shadow: 10px 10px 5px #d5d5d5;
     border-color: black;
     border-style: solid;
 	border-radius: 3px;
@@ -89,6 +107,7 @@ select {
 
 #avatar {
 	margin: 20px 20px;
+	padding-left: 0px;
 }
 
 .jumbotron {
@@ -101,5 +120,11 @@ select {
 #hunting-map {
 	width: 100%;
 	height: 100%;
+}
+
+
+#exampleimg {
+	height: 200px;
+	width: 200px;
 }
 

@@ -8,17 +8,6 @@ $(document).ready(function(){
 	};
 	firebase.initializeApp(config);
 
-//global variables
-	var username;
-	var level;
-	var team;
-	var email;
-	var age;
-	var gender;
-	var avatar;
-	var favepoke;
-	var favpokeimg;
-
 // Create a variable to reference the database.
 	var database = firebase.database()
 	var userId;
@@ -32,30 +21,28 @@ $(document).ready(function(){
 			console.log(userId);
 			database.ref('users/' + userId).on('value', function(snapshot){
 				snap = snapshot.val();
-				$("#username").html(snap.username);
-				$("#team-level").html("Team: "+ snap.team + "<br>" + "Level: " + snap.level);
-				$("#email").html(snap.email);
-				$("#age-gender").html("Age: " + snap.age + "<br>" + "Gender: " + snap.gender);
-				$("#pokeImg").empty();
-				console.log(snap.favpokeimg)
-				$("#pokeImg").append("<img src='"+snap.favpokeimg+"'>")
+				$("#aboutDisplay").append(snap.aboutme);
+				$("#aboutInput").attr('value', snap.aboutme);
+				$("#genderDisplay").append(snap.gender);
+				$("#genderInput").attr('value', snap.gender);
+				$("#usernameDisplay").append(snap.username);
+				$("#usernameInput").attr('value', snap.username);
+				$("#teamDisplay").append(snap.team);
+				$("#teamInput").attr('selected', snap.team);
+				$("#levelDisplay").append(snap.level);
+				$("#levelInput").attr('selected', snap.level);
+				$("#ageDisplay").append(snap.age);
+				$("#ageInput").attr('value', snap.age);
+				$("#emailDisplay").append(snap.email);
+				$("#emailInput").attr('value', snap.email);
+				$("#pokemonInput").attr('value', snap.favepoke);
+				$("#pokeDisplay").append("<img src='"+snap.favpokeimg+"'>")
 				.append("<p>" + snap.favepoke + "</p>")
-				if(snapshot.child('profilepic').exists()){
-				$("#avatar").empty();
-				$("#avatar").append("<img id='profileImg' src='"+snap.profilepic+"'>");
-				}
-				username = snap.username;
-				level = snap.level;
-				team = snap.team;
-				email = snap.email;
-				age = snap.age;
-				gender = snap.gender;
-				avatar = snap.profilepic;
-				favepoke = snap.favepoke;
-				})
-// } else {
-		// 	console.log('no user')
-	    // No user is signed in.
+				$("#profileImage").append("<img id='profileImg' src='"+snap.profilepic+"'>");
+				});
+		} else {
+		$(location).attr('href','index.html');
+
 		}
 	});
 
@@ -74,39 +61,24 @@ $(document).ready(function(){
 		$(location).attr('href','index.html');
 	});
 
-// Edit the Profile Page
+// // Edit the Profile Page
 	$('#editProfile').on('click', function(){
-		console.log("button works!");
-		$('#username').hide();
-		$('#team-level').hide();
-		$('#email').hide();
-		$('#age-gender').hide();
-		$("#pokeImg").hide();
-		$('form').show();
-		$('#usernameForm').show();
-		$("#usernameInput").attr('value', username);
-		$("input.typeahead").show();
-		$("input.typeahead.tt-input").attr('value', favepoke);
-		$('#teamLevelForm').show();
-		$("#teamInput").attr('selected', team);
-		$("#levelInput").attr('value', level);
-		$('#emailForm').show();
-		$("#emailInput").attr('value', email);
-		$('#ageGenderForm').show();
-		$("#ageInput").attr('value', age);
-		$("#genderInput").attr('value', gender);
-		$('#saveProfileButton').show();
+		$('.display').hide();
+		$('.work').show();
 	});
 
 //save profile edits and push them to firebase
 	$("#saveProfileButton").on('click', function(){
+		$('.display').show();
+		$(".work").hide();
+		about = $("#aboutInput").val().trim();
 		username = $('#usernameInput').val().trim();
 		team = $('#teamInput :selected').text();
-		level = $('#levelInput').val().trim();
+		level = $('#levelInput :selected').text();
 		email = $('#emailInput').val().trim();
 		age = $('#ageInput').val().trim();
 		gender = $('#genderInput').val().trim();
-		favepoke = $('input.typeahead.tt-input').val().trim();
+		favepoke = $('#pokemonInput').val().trim().toLowerCase();
 		var queryURL = "http://pokeapi.co/api/v2/pokemon/"+favepoke+"/";
     	$.ajax({url: queryURL, method: "GET"})
     	.done(function(response) {
@@ -117,11 +89,12 @@ $(document).ready(function(){
 			alert('please select a valid gender (either male or female)')
 		}
 		else {
-		$('#editProfile').hide();
 		$('#saveProfileButton').hide();
 				userId = firebase.auth().currentUser.uid;
 				console.log(userId);
+				$('.display').empty();		
 				database.ref('users/' + userId).update({
+					aboutme: about,
 					age: age, 
 					email: email,
 					gender: gender,
@@ -132,22 +105,9 @@ $(document).ready(function(){
 					favpokeimg: favpokeimg
 				})
 
-		$('#username').show();
-		$('#team-level').show();
-		$('#email').show();
-		$('#age-gender').show();
-		$("#pokeImg").show();
-		$('form').hide();
-		$('#usernameForm').hide();
-		$('#teamLevelForm').hide();
-		$('#emailForm').hide();
-		$('#ageGenderForm').hide();
-		$('#saveProfileButton').hide();
-		$("input.typeahead.tt-input").hide();
-
 		}
     	});	
-    })
+    });
 
 
     //when this function is called it will call the api input the img fron the div with the ID fileinfo
