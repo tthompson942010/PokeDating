@@ -119,7 +119,7 @@ $(document).ready(function(){
 	            var fd = new FormData(document.getElementById("fileinfo"));
 	            fd.append("label", "WEBUPLOAD");
 	            $.ajax({
-	              url: "http://uploads.im/api?",
+	              url: "https://uploads.im/api?",
 	              type: "POST",
 	              data: fd,
 	              processData: false,  // tell jQuery not to process the data
