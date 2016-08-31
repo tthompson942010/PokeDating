@@ -112,16 +112,7 @@ $(document).ready(function(){
 				console.log(errorMessage);
 				// ...
 			});				
-			// var userId = firebase.auth().currentUser.uid;
-			// 	database.ref('users/' + userId).set({
-			// 		age: "",
-			// 		email: email,
-			// 		gender: "",
-			// 		level: "",
-			// 		team: "",
-			// 		username: ""
 
-			// 	});
 
 
 

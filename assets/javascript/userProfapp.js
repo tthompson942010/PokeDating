@@ -52,9 +52,7 @@ $(document).ready(function(){
 				avatar = snap.profilepic;
 				favepoke = snap.favepoke;
 				})
-// } else {
-		// 	console.log('no user')
-	    // No user is signed in.
+
 		}
 	});
 
