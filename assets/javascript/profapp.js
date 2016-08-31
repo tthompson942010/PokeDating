@@ -57,9 +57,6 @@ $(document).ready(function(){
 				}
 				
 				})
-// } else {
-		// 	console.log('no user')
-	    // No user is signed in.
 		}
 	});
 
@@ -111,7 +108,7 @@ $(document).ready(function(){
 		age = $('#ageInput').val().trim();
 		gender = $('#genderInput').val().trim();
 		favepoke = $('input.typeahead.tt-input').val().trim();
-		var queryURL = "http://pokeapi.co/api/v2/pokemon/"+favepoke+"/";
+		var queryURL = "https://pokeapi.co/api/v2/pokemon/"+favepoke+"/";
     	$.ajax({url: queryURL, method: "GET"})
     	.done(function(response) {
     	favpokeimg = (response.sprites.front_default)	
@@ -163,7 +160,7 @@ $(document).ready(function(){
 	            var fd = new FormData(document.getElementById("fileinfo"));
 	            fd.append("label", "WEBUPLOAD");
 	            $.ajax({
-	              url: "http://uploads.im/api?",
+	              url: "https://uploads.im/api?",
 	              type: "POST",
 	              data: fd,
 	              processData: false,  // tell jQuery not to process the data
